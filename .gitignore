@@ -1,2 +1,2 @@
-﻿.tmp
-ohtu-viikko1/build/
+*.tmp
+/build
