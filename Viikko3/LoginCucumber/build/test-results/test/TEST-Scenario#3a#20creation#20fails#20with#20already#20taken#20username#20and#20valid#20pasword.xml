@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Scenario: creation fails with already taken username and valid pasword" tests="6" skipped="0" failures="2" errors="0" timestamp="2017-04-02T20:48:12" hostname="LAPTOP-B2IN1GJI" time="0.0">
+  <properties/>
+  <testcase name="Given command new user is selected" classname="Scenario: creation fails with already taken username and valid pasword" time="0.0"/>
+  <testcase name="When user &quot;user&quot; with password &quot;user&quot; is created" classname="Scenario: creation fails with already taken username and valid pasword" time="0.0"/>
+  <testcase name="And command new user is selected" classname="Scenario: creation fails with already taken username and valid pasword" time="0.0"/>
+  <testcase name="And username &quot;user&quot; and password &quot;user&quot; are entered" classname="Scenario: creation fails with already taken username and valid pasword" time="0.0"/>
+  <testcase name="Then system will respond with &quot;new user not registered&quot;" classname="Scenario: creation fails with already taken username and valid pasword" time="0.0">
+    <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at ohtu.Stepdefs.system_will_respond_with(Stepdefs.java:38)
+	at ✽.Then system will respond with &quot;new user not registered&quot;(ohtu/new_user.feature:28)
+</failure>
+  </testcase>
+  <testcase name="classMethod" classname="Scenario: creation fails with already taken username and valid pasword" time="0.0">
+    <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at ohtu.Stepdefs.system_will_respond_with(Stepdefs.java:38)
+	at ✽.Then system will respond with &quot;new user not registered&quot;(ohtu/new_user.feature:28)
+</failure>
+  </testcase>
+  <system-out><![CDATA[
+  Scenario: creation fails with too short username and valid passord ?[90m# ohtu/new_user.feature:18?[0m
+    ?[32mGiven ?[0m?[32mcommand new user is selected?[0m                               ?[90m# Stepdefs.command_new_user_is_selected()?[0m
+    ?[32mWhen ?[0m?[32musername "?[0m?[32m?[1mlattia?[0m?[32m" and password "?[0m?[32m?[1mpipari?[0m?[32m" are entered?[0m         ?[90m# Stepdefs.a_username_and_password_are_entered(String,String)?[0m
+    ?[31mThen ?[0m?[31msystem will respond with "?[0m?[31m?[1mnew user not registered?[0m?[31m"?[0m          ?[90m# Stepdefs.system_will_respond_with(String)?[0m
+      ?[31mjava.lang.AssertionError
+      	at org.junit.Assert.fail(Assert.java:86)
+      	at org.junit.Assert.assertTrue(Assert.java:41)
+      	at org.junit.Assert.assertTrue(Assert.java:52)
+      	at ohtu.Stepdefs.system_will_respond_with(Stepdefs.java:38)
+      	at ?.Then system will respond with "new user not registered"(ohtu/new_user.feature:21)
+      ?[0m
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
