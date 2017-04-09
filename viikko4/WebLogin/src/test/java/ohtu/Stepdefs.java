@@ -52,6 +52,39 @@ public class Stepdefs {
         logInWith(username, password);
     }
 
+    @When("^username \"([^\"]*)\" and password \"([^\"]*)\" are given$")
+    public void username_ok_and_password_ok_are_given(String username, String password) throws Throwable {
+        createUserWith(username, password);
+    }
+
+    @When("^too short username \"([^\"]*)\" and password \"([^\"]*)\" are given$")
+    public void username_short_and_password_ok_are_given(String username, String password) throws Throwable {
+        // Vähennetään vähän tsänssiä tehä testissä virheitä nyt kun kerran väännetään kaikki rautalangasta
+        assertTrue(username.length() < 3);
+        createUserWith(username, password);
+    }
+
+    @When("^username \"([^\"]*)\" and too short password \"([^\"]*)\" are given$")
+    public void username_ok_and_password_short_are_given(String username, String password) throws Throwable {
+        assertTrue(password.length() < 8);
+        createUserWith(username, password);
+    }
+
+    @When("^username \"([^\"]*)\" and password consisting of only letters \"([^\"]*)\" are given$")
+    public void username_ok_and_password_only_letters_are_given(String username, String password) throws Throwable {
+        createUserWith(username, password);
+    }
+
+    @When("^taken username \"([^\"]*)\" and password \"([^\"]*)\" are given$")
+    public void username_taken_and_password_ok_are_given(String username, String password) throws Throwable {
+        createUserWith(username, password);
+    }
+
+    @When("^username \"([^\"]*)\" and ok password \"([^\"]*)\" and confirmation \"([^\"]*)\" are given$")
+    public void username_ok_and_password_ok_and_confirmation_are_given(String username, String password, String confirmation) throws Throwable {
+        createUserWith(username, password, confirmation);
+    }
+
     @Then("^user is logged in$")
     public void user_is_logged_in() throws Throwable {
         pageHasContent("Ohtu Application main page");
@@ -61,6 +94,11 @@ public class Stepdefs {
     public void user_is_not_logged_in_and_error_message_is_given() throws Throwable {
         pageHasContent("invalid username or password");
         pageHasContent("Give your credentials to login");
+    }
+
+    @Then("^user is created and 'welcome'-screen is shown$")
+    public void user_created_welcome_screen_shown() throws Throwable {
+        pageHasContent("Welcome to Ohtu Application!");
     }
 
     @After
@@ -81,5 +119,21 @@ public class Stepdefs {
         element.sendKeys(password);
         element = driver.findElement(By.name("login"));
         element.submit();
+    }
+
+    private void createUserWith(String username, String password, String confirmation) {
+        assertTrue(driver.getPageSource().contains("Create username and give password"));
+        WebElement element = driver.findElement(By.name("username"));
+        element.sendKeys(username);
+        element = driver.findElement(By.name("password"));
+        element.sendKeys(password);
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys(confirmation);
+        element = driver.findElement(By.name("signup"));
+        element.submit();
+    }
+
+    private void createUserWith(String username, String password) {
+        createUserWith(username, password, password);
     }
 }
