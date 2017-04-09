@@ -59,7 +59,6 @@ public class Stepdefs {
 
     @When("^too short username \"([^\"]*)\" and password \"([^\"]*)\" are given$")
     public void username_short_and_password_ok_are_given(String username, String password) throws Throwable {
-        // Vähennetään vähän tsänssiä tehä testissä virheitä nyt kun kerran väännetään kaikki rautalangasta
         assertTrue(username.length() < 3);
         createUserWith(username, password);
     }
@@ -99,6 +98,12 @@ public class Stepdefs {
     @Then("^user is created and 'welcome'-screen is shown$")
     public void user_created_welcome_screen_shown() throws Throwable {
         pageHasContent("Welcome to Ohtu Application!");
+    }
+
+    @Then("^user is not created and error \"([^\"]*)\" is reported$")
+    public void user_not_created_error_reported(String error) throws Throwable {
+        pageHasContent(error);
+        pageHasContent("Create username and give password");
     }
 
     @After

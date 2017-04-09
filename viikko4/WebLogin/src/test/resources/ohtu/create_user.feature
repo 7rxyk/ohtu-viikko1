@@ -7,7 +7,7 @@ Feature: A new user account can be created if a proper unused username and passw
 
   Scenario: creation fails with too short username and valid passord
     Given new user is selected
-    When too short username "ab" and ok password "piip" are given
+    When too short username "ab" and password "piip" are given
     Then user is not created and error "username should have at least 3 characters" is reported
 
   Scenario: creation fails with correct username and too short password
@@ -27,5 +27,17 @@ Feature: A new user account can be created if a proper unused username and passw
 
   Scenario: creation fails when password and password confirmation do not match
     Given new user is selected
-    When ok username "petteri" and ok password "abhf33333" and confirmation "abhf43333" are given
+    When username "petteri" and password "abhf33333" and confirmation "abhf43333" are given
     Then user is not created and error "password and password confirmation do not match" is reported
+
+  Scenario: user can login with successfully generated account
+    Given user with username "liisa" with password "salainen1" is successfully created
+    And login is selected
+    When correct username "liisa" and password "salainen1" are given
+    Then user is logged in
+
+  Scenario: user can not login with account that is not successfully created
+    Given user with username "aa" and password "bad" is unsuccessfully created
+    And login is selected
+    When correct username "aa" and password "bad" are given
+    Then user is not logged in and error message is given
